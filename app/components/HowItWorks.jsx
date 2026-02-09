@@ -62,7 +62,7 @@ export default function HowItWorks() {
   return (
     <section
       id="process"
-      className="py-16 sm:py-24 bg-gradient-to-b from-gray-950 to-gray-900 relative overflow-hidden"
+      className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

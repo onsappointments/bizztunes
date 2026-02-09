@@ -33,7 +33,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #9333ea 0%, #ec4899 100%);
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 ::selection {
