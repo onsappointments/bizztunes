@@ -8,12 +8,7 @@ import {
   HiMapPin,
   HiClock
 } from 'react-icons/hi2';
-import { 
-  FaWhatsapp, 
-  FaInstagram, 
-  FaFacebook, 
-  FaLinkedin 
-} from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const contactInfo = [
   {
@@ -25,32 +20,39 @@ const contactInfo = [
   },
   {
     icon: HiEnvelope,
-    title: 'Email',
-    detail: 'info@bizztunes.com',
-    link: 'mailto:info@bizztunes.com',
+    title: 'General Inquiries',
+    detail: 'info@bizztunes.in',
+    link: 'mailto:info@bizztunes.in',
     gradient: 'from-blue-500 to-indigo-600'
+  },
+  {
+    icon: HiEnvelope,
+    title: 'Sales & Pricing',
+    detail: 'sales@bizztunes.in',
+    link: 'mailto:sales@bizztunes.in',
+    gradient: 'from-emerald-500 to-teal-600'
   },
   {
     icon: HiMapPin,
     title: 'Location',
     detail: 'Ludhiana, Punjab, India',
     link: '#',
-    gradient: 'from-emerald-500 to-teal-600'
+    gradient: 'from-orange-500 to-red-600'
   },
   {
     icon: HiClock,
     title: 'Business Hours',
     detail: '24/7 Support Available',
     link: '#',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-pink-500 to-rose-600'
+  },
+  {
+    icon: FaWhatsapp,
+    title: 'WhatsApp',
+    detail: '+91 7009987733',
+    link: 'https://wa.me/917009987733',
+    gradient: 'from-green-500 to-emerald-600'
   }
-];
-
-const socialLinks = [
-  { icon: FaWhatsapp, name: 'WhatsApp', link: '#', gradient: 'from-green-500 to-emerald-600' },
-  { icon: FaInstagram, name: 'Instagram', link: '#', gradient: 'from-pink-500 to-purple-600' },
-  { icon: FaFacebook, name: 'Facebook', link: '#', gradient: 'from-blue-500 to-indigo-600' },
-  { icon: FaLinkedin, name: 'LinkedIn', link: '#', gradient: 'from-blue-600 to-cyan-600' }
 ];
 
 export default function Contact() {
@@ -101,7 +103,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact Info Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {contactInfo.map((info, index) => (
             <ContactCard key={info.title} info={info} index={index} inView={inView} />
           ))}
@@ -112,8 +114,11 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 border border-gray-700 text-center"
+          className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 border border-gray-700 hover:border-purple-500 transition-all duration-300 text-center group"
         >
+          {/* Gradient Glow */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl" />
+          
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Start Your Audio Branding Journey Today
           </h3>
@@ -121,20 +126,24 @@ export default function Contact() {
             Call us now for a free consultation and discover how we can help your business stand out
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <motion.a
               href="tel:7009987733"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold text-base sm:text-lg shadow-xl hover:shadow-purple-500/50 transition-all hover:scale-105 active:scale-95"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold text-base sm:text-lg shadow-xl hover:shadow-purple-500/50 transition-all"
             >
               <HiPhone className="text-xl" />
               Call: 7009987733
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/50 text-white rounded-full font-semibold text-base sm:text-lg transition-all"
+            </motion.a>
+            <motion.a
+              href="https://wa.me/917009987733"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-500/50 text-white rounded-full font-semibold text-base sm:text-lg transition-all"
             >
               <FaWhatsapp className="text-xl" />
               WhatsApp Us
-            </a>
+            </motion.a>
           </div>
         </motion.div>
 
@@ -145,44 +154,50 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-16 pt-8 border-t border-white/10"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Logo & Contact Info Row */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
             {/* Logo & Copyright */}
             <div className="text-center md:text-left">
               <img 
                 src="/Bizz-tunes-logo.png" 
-                className="h-12 w-auto object-contain mx-auto md:mx-0 mb-3" 
+                className="h-12 sm:h-16 w-auto object-contain mx-auto md:mx-0 mb-4" 
                 alt="Bizz Tunes Logo" 
               />
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-500 text-sm">
                 © 2024 Bizz Tunes. All rights reserved.
               </p>
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-10 h-10 rounded-full bg-gradient-to-br ${social.gradient} flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all`}
-                    aria-label={social.name}
-                  >
-                    <Icon className="text-lg" />
-                  </motion.a>
-                );
-              })}
+            {/* Quick Contact */}
+            <div className="text-center md:text-right">
+              <h4 className="text-white font-semibold mb-3">Quick Contact</h4>
+              <div className="space-y-2 text-sm">
+                <a href="tel:7009987733" className="block text-gray-400 hover:text-purple-400 transition-colors">
+                  <span className="font-medium">Phone:</span> 7009987733
+                </a>
+                <a href="mailto:info@bizztunes.in" className="block text-gray-400 hover:text-purple-400 transition-colors">
+                  <span className="font-medium">General:</span> info@bizztunes.in
+                </a>
+                <a href="mailto:sales@bizztunes.in" className="block text-gray-400 hover:text-purple-400 transition-colors">
+                  <span className="font-medium">Sales:</span> sales@bizztunes.in
+                </a>
+                <p className="text-gray-500">
+                  Ludhiana, Punjab, India
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Bottom Links */}
-          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-            <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-purple-400 transition-colors">Refund Policy</a>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-white/5">
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+              <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-purple-400 transition-colors">Refund Policy</a>
+            </div>
+            <div className="text-sm text-gray-500">
+              Made with ♥ in India
+            </div>
           </div>
         </motion.div>
       </div>
@@ -197,7 +212,7 @@ function ContactCard({ info, index, inView }) {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -5 }}
     >
       <a
@@ -222,7 +237,7 @@ function ContactCard({ info, index, inView }) {
         </h3>
 
         {/* Detail */}
-        <p className="text-white font-medium">
+        <p className="text-white font-medium break-words">
           {info.detail}
         </p>
       </a>
