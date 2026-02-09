@@ -19,7 +19,7 @@ export default function Home() {
       <WhyBizztunes />
       <HowItWorks />
       {/* <Testimonials/> */}
-      <Pricing/>
+      {/* <Pricing/> */}
       <FAQ/>
       <CTA />
     </main>
