@@ -16,42 +16,48 @@ const contactInfo = [
     title: 'Phone',
     detail: '7009987733',
     link: 'tel:7009987733',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    clickable: true
   },
   {
     icon: HiEnvelope,
     title: 'General Inquiries',
     detail: 'info@bizztunes.in',
     link: 'mailto:info@bizztunes.in',
-    gradient: 'from-blue-500 to-indigo-600'
+    gradient: 'from-blue-500 to-indigo-600',
+    clickable: true
   },
   {
     icon: HiEnvelope,
     title: 'Sales & Pricing',
     detail: 'sales@bizztunes.in',
     link: 'mailto:sales@bizztunes.in',
-    gradient: 'from-emerald-500 to-teal-600'
+    gradient: 'from-emerald-500 to-teal-600',
+    clickable: true
   },
   {
     icon: HiMapPin,
     title: 'Location',
-    detail: 'Ludhiana, Punjab, India',
-    link: '#',
-    gradient: 'from-orange-500 to-red-600'
+    detail: '#24, Aatma Nagar, Mundian Kalan, Ludhiana 141015, Punjab, India',
+    link: null,
+    gradient: 'from-orange-500 to-red-600',
+    clickable: false
   },
   {
     icon: HiClock,
     title: 'Business Hours',
     detail: '24/7 Support Available',
-    link: '#',
-    gradient: 'from-pink-500 to-rose-600'
+    link: null,
+    gradient: 'from-pink-500 to-rose-600',
+    clickable: false
   },
   {
     icon: FaWhatsapp,
     title: 'WhatsApp',
     detail: '+91 7009987733',
     link: 'https://wa.me/917009987733',
-    gradient: 'from-green-500 to-emerald-600'
+    gradient: 'from-green-500 to-emerald-600',
+    clickable: true
   }
 ];
 
@@ -114,18 +120,18 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 border border-gray-700 hover:border-purple-500 transition-all duration-300 text-center group"
+          className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 border border-gray-700 hover:border-purple-500 transition-all duration-300 text-center group"
         >
           {/* Gradient Glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl" />
           
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          <h3 className="relative text-2xl sm:text-3xl font-bold text-white mb-4">
             Start Your Audio Branding Journey Today
           </h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="relative text-gray-400 mb-8 max-w-2xl mx-auto">
             Call us now for a free consultation and discover how we can help your business stand out
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="relative flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
               href="tel:7009987733"
               whileHover={{ scale: 1.05 }}
@@ -137,6 +143,8 @@ export default function Contact() {
             </motion.a>
             <motion.a
               href="https://wa.me/917009987733"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-green-500/50 text-white rounded-full font-semibold text-base sm:text-lg transition-all"
@@ -207,6 +215,7 @@ export default function Contact() {
 
 function ContactCard({ info, index, inView }) {
   const Icon = info.icon;
+  const Container = info.clickable ? 'a' : 'div';
 
   return (
     <motion.div
@@ -215,16 +224,20 @@ function ContactCard({ info, index, inView }) {
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -5 }}
     >
-      <a
-        href={info.link}
-        className="block relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 h-full group"
+      <Container
+        {...(info.clickable && info.link ? { 
+          href: info.link,
+          target: info.link.startsWith('http') ? '_blank' : undefined,
+          rel: info.link.startsWith('http') ? 'noopener noreferrer' : undefined
+        } : {})}
+        className={`block relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 h-full group ${info.clickable ? 'cursor-pointer' : 'cursor-default'}`}
       >
         {/* Gradient Glow */}
         <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${info.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`} />
         
         {/* Icon */}
         <motion.div
-          whileHover={{ rotate: 360, scale: 1.1 }}
+          whileHover={info.clickable ? { rotate: 360, scale: 1.1 } : {}}
           transition={{ duration: 0.6 }}
           className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${info.gradient} flex items-center justify-center mb-4 shadow-lg`}
         >
@@ -240,7 +253,7 @@ function ContactCard({ info, index, inView }) {
         <p className="text-white font-medium break-words">
           {info.detail}
         </p>
-      </a>
+      </Container>
     </motion.div>
   );
 }
