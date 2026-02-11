@@ -11,6 +11,7 @@ import {
   HiUserGroup
 } from 'react-icons/hi2';
 
+
 const services = [
   {
     icon: HiMicrophone,
@@ -78,6 +79,7 @@ export default function Services() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: "transform" }}
           className="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
         />
         <motion.div
@@ -90,6 +92,7 @@ export default function Services() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: "transform" }}
           className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-3xl"
         />
       </div>

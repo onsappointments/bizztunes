@@ -49,17 +49,16 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id='faq' className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-gray-900 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-gray-900 relative overflow-hidden"
+    >
+       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
         
         <motion.div
@@ -72,6 +71,7 @@ export default function FAQ() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: "transform" }}
           className="absolute top-20 right-20 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
         />
         <motion.div
@@ -84,12 +84,47 @@ export default function FAQ() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: "transform" }}
+          className="absolute bottom-20 left-20 w-96 h-96 bg-pink-500 rounded-full blur-3xl"
+        />
+      </div> <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{ willChange: "transform" }}
+          className="absolute top-20 right-20 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{ willChange: "transform" }}
           className="absolute bottom-20 left-20 w-96 h-96 bg-pink-500 rounded-full blur-3xl"
         />
       </div>
+      
+      {/* SEO-only heading (invisible, UI unchanged) */}
+      <h2 id="faq-heading" className="sr-only">
+        Business Callertune Frequently Asked Questions
+      </h2>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Section Header (UNCHANGED) */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -100,18 +135,18 @@ export default function FAQ() {
           <span className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-300 text-sm font-semibold mb-4">
             FAQ
           </span>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Got Questions?
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> We've Got Answers</span>
-          </h2>
-          
+          </h3>
+
           <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto px-4">
             Can't find what you're looking for? Call us at 7009987733
           </p>
         </motion.div>
 
-        {/* FAQ Items */}
+        {/* FAQ Items (UNCHANGED UI) */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <FAQItem
@@ -124,48 +159,21 @@ export default function FAQ() {
             />
           ))}
         </div>
-
-        {/* Still have questions CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 sm:mt-16"
-        >
-          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 border border-gray-700 text-center group hover:border-purple-500 transition-all duration-300">
-            {/* Gradient Glow */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl" />
-            
-            <motion.div
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-              className="relative w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
-            >
-              <HiQuestionMarkCircle className="text-3xl text-white" />
-            </motion.div>
-            
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-              Still have questions?
-            </h3>
-            <p className="text-gray-400 mb-6 sm:mb-8">
-              Our team is here to help you 24/7
-            </p>
-            <motion.a
-              href="tel:7009987733"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold text-base sm:text-lg shadow-xl hover:shadow-purple-500/50 transition-all"
-            >
-              Contact Support
-            </motion.a>
-          </div>
-        </motion.div>
       </div>
+
+      {/* Invisible SEO support */}
+      <p className="sr-only">
+        This FAQ section answers common questions about business callertunes,
+        including activation time, compatibility, pricing, revisions,
+        language support, and usage across multiple numbers.
+      </p>
     </section>
   );
 }
 
 function FAQItem({ faq, index, isOpen, toggle, inView }) {
+  const contentId = `faq-content-${index}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -175,6 +183,8 @@ function FAQItem({ faq, index, isOpen, toggle, inView }) {
     >
       <motion.button
         onClick={toggle}
+        aria-expanded={isOpen}
+        aria-controls={contentId}
         className={`w-full text-left bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 ${
           isOpen ? 'rounded-b-none border-b-0' : ''
         }`}
@@ -182,15 +192,15 @@ function FAQItem({ faq, index, isOpen, toggle, inView }) {
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <h3 className={`text-base sm:text-lg font-bold transition-colors ${
+            <h4 className={`text-base sm:text-lg font-bold transition-colors ${
               isOpen
                 ? 'bg-gradient-to-r ' + faq.gradient + ' bg-clip-text text-transparent'
                 : 'text-white group-hover:text-purple-300'
             }`}>
               {faq.question}
-            </h3>
+            </h4>
           </div>
-          
+
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -204,6 +214,7 @@ function FAQItem({ faq, index, isOpen, toggle, inView }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={contentId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -229,3 +240,8 @@ function FAQItem({ faq, index, isOpen, toggle, inView }) {
     </motion.div>
   );
 }
+
+
+
+   {/* Background Elements */}
+     

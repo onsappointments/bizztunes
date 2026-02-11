@@ -14,88 +14,60 @@ const steps = [
   {
     number: '01',
     icon: HiPhone,
-    title: 'Contact Us',
+    title: 'Contact Our Team',
     description:
-      'Call us at 7009987733 or reach out via WhatsApp. Share your business details and requirements.',
+      'Get started by contacting us for your business caller tune. Share your company details, brand tone, and requirements.',
     gradient: 'from-blue-500 to-cyan-600',
   },
   {
     number: '02',
     icon: HiPencilSquare,
-    title: 'Script Development',
+    title: 'Script & Concept Creation',
     description:
-      'Our creative team crafts a custom script that perfectly captures your brand message and values.',
+      'We create a custom script and concept for your business caller tune or jingle that matches your brand identity.',
     gradient: 'from-purple-500 to-pink-600',
   },
   {
     number: '03',
     icon: HiMusicalNote,
-    title: 'Production',
+    title: 'Professional Audio Production',
     description:
-      'Professional voiceover artists and musicians bring your script to life with studio-quality recording.',
+      'Our professional voice artists and musicians produce your business caller tune using studio-quality recording.',
     gradient: 'from-pink-500 to-rose-600',
   },
   {
     number: '04',
     icon: HiCheckCircle,
-    title: 'Review & Revise',
+    title: 'Review & Refinement',
     description:
-      "Listen to the preview and request any changes. We refine until you're 100% satisfied.",
+      'Listen to your business caller tune preview and request revisions. We refine until you are fully satisfied.',
     gradient: 'from-orange-500 to-amber-600',
   },
   {
     number: '05',
     icon: HiRocketLaunch,
-    title: 'Activation',
+    title: 'Activation Across Networks',
     description:
-      'We activate your callertune across all networks. Start impressing your callers within 24 hours!',
+      'Your business caller tune is activated across supported networks so every caller hears your branded message.',
     gradient: 'from-emerald-500 to-teal-600',
   },
 ];
 
 export default function HowItWorks() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <section
       id="process"
       className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 relative overflow-hidden"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"
-        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* SECTION HEADER */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -107,20 +79,30 @@ export default function HowItWorks() {
             Simple Process
           </span>
 
+          {/* SEO-CORRECT H2 */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            How It
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Works</span>
+            How Our
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              {' '}Business Caller Tune Works
+            </span>
           </h2>
 
-          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto px-4">
-            Get your professional callertune in 5 easy steps
+          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
+            Our streamlined process makes it easy to create and activate
+            professional business caller tunes and branded jingles in just
+            a few simple steps.
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
+        {/* STEPS */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           {steps.map((step, index) => (
-            <StepCard key={step.number} step={step} index={index} inView={inView} />
+            <StepCard
+              key={step.number}
+              step={step}
+              index={index}
+              inView={inView}
+            />
           ))}
         </div>
 
@@ -138,10 +120,17 @@ export default function HowItWorks() {
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold text-base sm:text-lg shadow-xl hover:shadow-purple-500/50 transition-all"
           >
             <HiPhone className="text-xl" />
-            Start Your Journey
+            Get Your Business Caller Tune
           </motion.a>
         </motion.div>
       </div>
+
+      {/* INVISIBLE SEO SUPPORT */}
+      <p className="sr-only">
+        This section explains how businesses can create professional
+        business caller tunes and branded jingles, from script creation
+        and audio production to final activation across supported networks.
+      </p>
     </section>
   );
 }
@@ -157,10 +146,10 @@ function StepCard({ step, index, inView }) {
       whileHover={{ y: -5 }}
       className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20"
     >
-      {/* Gradient Glow on Hover */}
-      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`} />
-      
-      {/* Icon */}
+      <div
+        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`}
+      />
+
       <div className="mb-6 flex justify-center">
         <motion.div
           whileHover={{ rotate: 360, scale: 1.1 }}
@@ -171,17 +160,14 @@ function StepCard({ step, index, inView }) {
         </motion.div>
       </div>
 
-      {/* Step Number */}
       <div className="text-xs font-bold text-purple-400 mb-2 text-center">
         STEP {step.number}
       </div>
 
-      {/* Title */}
-      <h3 className="text-lg font-bold text-white mb-3 text-center group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+      <h3 className="text-lg font-bold text-white mb-3 text-center">
         {step.title}
       </h3>
 
-      {/* Description */}
       <p className="text-sm text-gray-400 leading-relaxed text-center">
         {step.description}
       </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiPhone, HiSparkles } from "react-icons/hi2";
+import { HiPhone } from "react-icons/hi2";
 import { useMemo } from "react";
 import Image from "next/image";
 
@@ -24,46 +24,32 @@ export default function Hero() {
     >
       {/* BACKGROUND IMAGE WITH OVERLAY */}
       <div className="absolute inset-0">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero.png"
-            alt="Background"
-            fill
-            className="object-cover"
-            quality={90}
-            priority
-          />
-          {/* Dark gradient overlay to blend with theme */}
+        <Image
+          src="/hero.png"
+          alt="Professional business caller tune and jingle branding background"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+          quality={85}
+        />
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/95 via-indigo-900/90 to-blue-900/95" />
-          {/* Additional overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
         {/* FLOATING ORBS */}
         <div className="absolute inset-0 pointer-events-none z-10">
           <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            style={{ willChange: "transform" }}
             className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            style={{ willChange: "transform" }}
             className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
           />
         </div>
@@ -74,17 +60,17 @@ export default function Hero() {
 
       {/* CONTENT */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
-        {/* HEADLINE */}
+        {/* SEO PRIMARY HEADING */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl"
         >
-          Your Voice is Your
+          Business Caller Tune
           <br />
           <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
-            Brand Identity
+            & Professional Jingles
           </span>
         </motion.h1>
 
@@ -96,7 +82,8 @@ export default function Hero() {
           className="text-lg sm:text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-lg"
         >
           Transform every incoming call into a professional brand experience
-          with custom callertunes, jingles, and voice branding
+          with custom <strong>business caller tunes</strong> and{" "}
+          <strong>branded jingles</strong> designed for companies worldwide.
         </motion.p>
 
         {/* CTA BUTTONS */}
@@ -118,7 +105,7 @@ export default function Hero() {
             </span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-700"
-              initial={{ x: '-100%' }}
+              initial={{ x: "-100%" }}
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
@@ -140,8 +127,9 @@ export default function Hero() {
         {bars.map((bar) => (
           <motion.div
             key={bar.id}
-            className="w-1 bg-gradient-to-t from-pink-400 to-purple-400 rounded-full"
+            className="will-change-auto w-1 bg-gradient-to-t from-pink-400 to-purple-400 rounded-full"
             animate={{ height: ["30%", "80%", "30%"] }}
+            style={{ willChange: "transform" }}
             transition={{
               duration: bar.duration,
               repeat: Infinity,
@@ -162,15 +150,26 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
+          style={{ willChange: "transform" }}
           className="w-6 h-10 border-2 border-white/30 rounded-full p-1"
         >
-          <motion.div 
+          <motion.div
             className="w-1.5 h-3 bg-white rounded-full mx-auto"
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
+            style={{ willChange: "transform" }}
           />
         </motion.div>
       </motion.div>
+
+      {/* INVISIBLE SEO SUPPORT TEXT */}
+      <p className="sr-only">
+        BizzTunes provides professional business caller tunes and custom
+        business jingles for companies worldwide. A business caller tune
+        replaces the default ringing tone with a branded audio message,
+        helping businesses sound professional and build trust from the
+        very first call.
+      </p>
     </section>
   );
 }
